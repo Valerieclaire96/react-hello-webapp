@@ -16,7 +16,7 @@ export const Home = () => {
     <div className="text-center mt-5">
 	 <ContactForm />
 	 <hr/>
-      <div className="contactsContainer">
+      <div className="contactsContainer mx-auto">
         <h1>All Contacts</h1>
         {contacts?.map((contact, index) => (
           <ContactCard

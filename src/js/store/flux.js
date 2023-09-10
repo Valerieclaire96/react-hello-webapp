@@ -16,27 +16,35 @@ const getState = ({ getStore, getActions, setStore }) => {
       contacts: [
         { name: "Valeire", email: "valerie@email.com", number: "111-111-1111" },
       ],
+	  editMode: false
     },
     actions: {
       addContacts: (data) => {
         setStore({ contacts: [...getStore().contacts, data] });
       },
+
       updateContact: (oldData, newData) => {
-		console.log(oldData, newData);
-        const updatedContacts = getStore().contacts.map((contact) => {
-          if (contact == oldData) {
-            setStore({newData});
-          } 
-        });
-        setStore({ contacts: updatedContacts });
+        const index = getStore().contacts.findIndex(
+          (contact) => contact === oldData
+        );
+        if (index !== -1) {
+          const updatedContact = [...getStore().contacts];
+          updatedContact[index] = newData;
+          setStore({ contacts: updatedContact });
+        }
+		setStore({editMode: false})
       },
 
-      findContact: (data) => {
-        getStore().contacts.filter((x) => {
-          return x === data;
-          console.log(x);
-        });
-      },
+	  setEditMode: (boolean) =>{
+		setStore({editMode: boolean});
+	  },
+
+    //   findContact: (data) => {
+    //     getStore().contacts.filter((x) => {
+    //       return x === data;
+    //       console.log(x);
+    //     });
+    //   },
       deleteContacts: (e) => {
         setStore({
           contacts: getStore().contacts.filter((x) => {

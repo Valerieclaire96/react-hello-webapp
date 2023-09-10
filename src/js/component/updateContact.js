@@ -15,6 +15,7 @@ export default function UpdateContact(props) {
       { name: props.name, number: props.number, email: props.email }, 
       { name: newName, number: newNumber, email: newEmail } 
     );
+    actions.setEditMode(false)
   };
 
   return (
