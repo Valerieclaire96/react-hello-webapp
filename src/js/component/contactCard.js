@@ -1,26 +1,32 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Context } from '../store/appContext';
-
-export default function ContactCard() {
+import React, { useState, useEffect, useContext } from "react";
+import { Context } from "../store/appContext";
+import { useNavigate } from "react-router";
+import UpdateContact from "./updateContact";
+export default function ContactCard(props) {
   const { store, actions } = useContext(Context);
-  const [contacts, setContacts] = useState([]);
-
-  useEffect(() => {
-    setContacts(store.contacts);
-  }, [ store.contacts]);
+  const [editMode, setEditMode] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div>
-      <h1>All Contacts</h1>
-      {contacts?.map((contact, index) => (
-        <div className="contactCard d-flex" key={index}>
-          <img src={contact.img}/>
-          <h3>{contact.name}</h3>
-          <h3>{contact.email}</h3>
-          <h3>{contact.number}</h3>
-          <button onClick={(e)=>actions.deleteContacts(e.target.value)}>DeleteContact</button>
+      {editMode === false ? (
+        <div className="contactCard d-flex">
+          {/* <img src={props.img} /> */}
+          <h3>{props.name}</h3>
+          <h3>{props.email}</h3>
+          <h3>{props.number}</h3>
+          <button onClick={(e) => actions.deleteContacts(props.contact)}>
+            Delete Contact
+          </button>
+          <button onClick={() => setEditMode(true)}>Update Contact</button>
         </div>
-      ))}
+      ) : (
+        <UpdateContact
+        name={props.name}
+        email={props.email}
+        number={props.number}
+        index={props.index} />
+      )}
     </div>
   );
 }

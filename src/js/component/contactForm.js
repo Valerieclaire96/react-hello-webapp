@@ -6,7 +6,6 @@ const { store, actions } = useContext(Context);
 const [email, setEmail] = useState("")
 const [name, setName] = useState("")
 const [number, setNumber] = useState("")
-const [contact, setContact] = useState("")
 
 const handleSumbit = (e)=>{
   e.preventDefault();

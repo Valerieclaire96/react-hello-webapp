@@ -13,27 +13,38 @@ const getState = ({ getStore, getActions, setStore }) => {
           initial: "white",
         },
       ],
-      contacts: [{name: "Valeire", email:"valerie@email.com", number: "111-111-1111"}],
+      contacts: [
+        { name: "Valeire", email: "valerie@email.com", number: "111-111-1111" },
+      ],
     },
     actions: {
       addContacts: (data) => {
         setStore({ contacts: [...getStore().contacts, data] });
       },
-      updateContacts: (oldData, newData) => {
+      updateContact: (oldData, newData) => {
+		console.log(oldData, newData);
+        const updatedContacts = getStore().contacts.map((contact) => {
+          if (contact == oldData) {
+            setStore({newData});
+          } 
+        });
+        setStore({ contacts: updatedContacts });
+      },
+
+      findContact: (data) => {
         getStore().contacts.filter((x) => {
-          if (x === oldData) {
-            setStore({ contacts: newData });
-          }
+          return x === data;
+          console.log(x);
         });
       },
-	  deleteContacts: (e) => {
-		setStore({
-			contacts: getStore().contacts.filter((x) => {
-			  return x != e;
-			}),
-		});
-	  },
-	  
+      deleteContacts: (e) => {
+        setStore({
+          contacts: getStore().contacts.filter((x) => {
+            return x != e;
+          }),
+        });
+      },
+
       // Use getActions to call a function within a fuction
       exampleFunction: () => {
         getActions().changeColor(0, "green");
