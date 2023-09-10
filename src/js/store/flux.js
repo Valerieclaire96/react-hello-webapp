@@ -25,7 +25,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       updateContact: (oldData, newData) => {
         const index = getStore().contacts.findIndex(
-          (contact) => contact === oldData
+          (contact) => contact.name === oldData.name
         );
         if (index !== -1) {
           const updatedContact = [...getStore().contacts];

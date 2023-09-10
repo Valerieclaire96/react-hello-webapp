@@ -8,27 +8,37 @@ export default function ContactCard(props) {
   const editMode = store.editMode;
   const navigate = useNavigate();
 
-
   return (
     <div>
       {editMode === false ? (
-        <div className="contactCard d-flex mx-auto justify-content-around">
+        <div className="contactCard d-flex justify-content-around w-100">
           {/* <img src={props.img} /> */}
           <h3>{props.name}</h3>
           <h3>{props.email}</h3>
           <h3>{props.number}</h3>
-          <button onClick={(e) => actions.deleteContacts(props.contact)}>
-            Delete Contact
-          </button>
-          <button onClick={() => actions.setEditMode(true)}>Update Contact</button>
+          <div className="w-50">
+            <button
+              className="btn btn-danger mx-2"
+              onClick={(e) => actions.deleteContacts(props.contact)}
+            >
+              Delete Contact
+            </button>
+            <button
+              className="btn btn-primary mx-2"
+              onClick={() => actions.setEditMode(true)}
+            >
+              Update Contact
+            </button>
+          </div>
         </div>
       ) : (
         <UpdateContact
-        name={props.name}
-        email={props.email}
-        number={props.number}
-        index={props.index} 
-        editMode={editMode}/>
+          name={props.name}
+          email={props.email}
+          number={props.number}
+          index={props.index}
+          editMode={editMode}
+        />
       )}
     </div>
   );

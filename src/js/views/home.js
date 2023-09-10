@@ -6,6 +6,7 @@ import ContactForm from "../component/contactForm";
 export const Home = () => {
   const { store, actions } = useContext(Context);
   const [contacts, setContacts] = useState([]);
+  
 
   useEffect(() => {
     setContacts(store.contacts);
@@ -15,9 +16,9 @@ export const Home = () => {
   return (
     <div className="text-center mt-5">
 	 <ContactForm />
-	 <hr/>
-      <div className="contactsContainer mx-auto">
+      <div className="contactsContainer mx-auto mt-5">
         <h1>All Contacts</h1>
+        <hr/>
         {contacts?.map((contact, index) => (
           <ContactCard
             key={index}

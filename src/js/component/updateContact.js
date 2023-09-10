@@ -4,9 +4,9 @@ import { useParams } from "react-router";
 
 export default function UpdateContact(props) {
   const { store, actions } = useContext(Context);
-  const [newEmail, setNewEmail] = useState("");
-  const [newName, setNewName] = useState("");
-  const [newNumber, setNewNumber] = useState("");
+  const [newEmail, setNewEmail] = useState(props.email);
+  const [newName, setNewName] = useState(props.name);
+  const [newNumber, setNewNumber] = useState(props.number);
 
 
   const handleSumbit = (e) => {
@@ -19,7 +19,7 @@ export default function UpdateContact(props) {
   };
 
   return (
-    <form onSubmit={handleSumbit}>
+    <form className="d-flex" onSubmit={handleSumbit}>
       <h1>Update a Contact</h1>
       <h3>Name</h3>
       <input type="text" onChange={(e) => setNewName(e.target.value)} />
@@ -27,7 +27,7 @@ export default function UpdateContact(props) {
       <input type="text" onChange={(e) => setNewEmail(e.target.value)} />
       <h3>Number</h3>
       <input type="text" onChange={(e) => setNewNumber(e.target.value)} />
-      <button type="submit">Update Contact</button>
+      <button className="btn btn-primary" type="submit">Update Contact</button>
     </form>
   );
 }
