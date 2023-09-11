@@ -14,7 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         },
       ],
       contacts: [
-        { name: "Valeire", email: "valerie@email.com", number: "111-111-1111" },
+        { name: "Valerie", email: "valerie@email.com", number: "111-111-1111" },
       ],
 	  editMode: false
     },
@@ -22,6 +22,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       addContacts: (data) => {
         setStore({ contacts: [...getStore().contacts, data] });
       },
+      // [[],date]
+      // [... ,data]
 
       updateContact: (oldData, newData) => {
         const index = getStore().contacts.findIndex(

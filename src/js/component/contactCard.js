@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
-import { useNavigate } from "react-router";
 import UpdateContact from "./updateContact";
 
 export default function ContactCard(props) {
   const { store, actions } = useContext(Context);
   const editMode = store.editMode;
-  const navigate = useNavigate();
 
   return (
     <div>
